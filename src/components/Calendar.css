@@ -1,0 +1,150 @@
+:root {
+  --calendar-bg: #ffffff;
+  --calendar-text-color: #202124;
+  --calendar-header-bg: #ffffff;
+  --calendar-header-border: #e0e0e0;
+  --calendar-button-color: #5f6368;
+  --calendar-button-bg:    #e0e0e0;
+  --calendar-button-hover-bg: #b8b8b8;
+  --calendar-weekday-color: #5f6368;
+  --calendar-grid-border: #e0e0e0;
+  --calendar-day-hover-bg: #f1f3f4;
+  --calendar-day-today-bg: #ffffff;
+  --calendar-day-today-color: #202124;
+  --calendar-day-selected-bg: #1a73e8;
+  --calendar-day-selected-color: #ffffff;
+  --calendar-day-past-color: #b8b8b8;
+  --calendar-day-empty-bg: #ffffff;
+}
+
+body.dark {
+  --calendar-bg: #202225;
+  --calendar-text-color: #e8eaed;
+  --calendar-header-bg: #202225;
+  --calendar-header-border: #3c4043;
+  --calendar-button-color: #9aa0a6;
+  --calendar-button-hover-bg: #3c4043;
+  --calendar-weekday-color: #9aa0a6;
+  --calendar-grid-border: #3c4043;
+  --calendar-day-hover-bg: #3c4043;
+  --calendar-day-today-bg: #8ab4f8;
+  --calendar-day-today-color: #202225;
+  --calendar-day-selected-bg: #334257;
+  --calendar-day-selected-color: #8ab4f8;
+  --calendar-day-past-color: #5f6368;
+  --calendar-day-empty-bg: #202225;
+}
+
+.calendar {
+  width: 100%;
+  height: 100%;
+  background: var(--calendar-bg);
+  font-family: "Inter", "Roboto", sans-serif;
+  color: var(--calendar-text-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem; /* Adjusted */
+  border-bottom: 1px solid var(--calendar-header-border);
+  background: var(--calendar-header-bg); /* Added */
+}
+
+.calendar-header h2 {
+  font-size: 1.1rem; /* Adjusted */
+  font-weight: 600; /* Adjusted */
+  color: var(--calendar-text-color);
+  margin: 0;
+}
+
+.calendar-header button {
+  border: none;
+  background: var(--calendar-button-bg);
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  color: var(--calendar-button-color);
+  border-radius: 50%;
+  transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.calendar-header button:hover {
+  background: var(--calendar-button-hover-bg);
+  color: var(--calendar-text-color); /* Added */
+}
+
+.calendar-weekdays {
+  display:               grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align:            center;
+  font-weight:           600;
+  font-size:             0.8rem;
+  color:                 var(--calendar-weekday-color);
+  background:            var(--calendar-bg);
+}
+
+.calendar-weekdays div {
+  border-right:  1px solid var(--calendar-grid-border);
+  border-bottom: 1px solid var(--calendar-grid-border);
+  padding:       0.5rem 0;
+}
+
+.calendar-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  border-left: 1px solid var(--calendar-grid-border);
+  background: var(--calendar-bg);
+}
+
+.calendar-day,
+.calendar-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem; /* Adjusted */
+  border-right: 1px solid var(--calendar-grid-border);
+  border-bottom: 1px solid var(--calendar-grid-border);
+  border-radius: 0px;
+  background: var(--calendar-day-empty-bg); /* Ensures consistent background for empty days */
+}
+
+.calendar-empty,
+.calendar-day.past {
+  pointer-events: none;
+  user-select: none;
+  cursor: default;
+}
+
+.calendar-day {
+  cursor: pointer;
+  color: var(--calendar-text-color);
+  transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.calendar-day:hover {
+  background: var(--calendar-day-hover-bg);
+}
+
+.calendar-day.today {
+  background: var(--calendar-day-today-bg);
+  color: var(--calendar-day-today-color);
+}
+
+.calendar-day.selected {
+  background: var(--calendar-day-selected-bg);
+  color: var(--calendar-day-selected-color);
+  font-weight: 700;
+  border: 2px solid var(--calendar-day-selected-color); /* Added border for emphasis */
+  margin: 2px;
+}
+
+.calendar-day.past {
+  color: var(--calendar-day-past-color);
+  opacity: 0.6;
+}
